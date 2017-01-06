@@ -65,7 +65,7 @@ class SSResqueRun extends Controller {
 	 */
 	public function init() {
 		// Ensure the composer autoloader is loaded so dependencies are loaded correctly
-		require_once BASE_PATH.'/vendor/autoload.php';
+		//require_once BASE_PATH.'/vendor/autoload.php';
 
 		parent::init();
 
