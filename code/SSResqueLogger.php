@@ -15,7 +15,12 @@ class SSResqueLogger extends Resque_Log {
 	 * @return null
 	 */
 	public function log($level, $message, array $context = array()) {
-		parent::log($level, $message, $context);
+        if ($this->verbose || !($level === Psr\Log\LogLevel::INFO || $level === Psr\Log\LogLevel::DEBUG)) {
+            fwrite(
+                STDOUT,
+                '[' . $level . '] [' . strftime('%T %Y-%m-%d') . '] ' . $this->interpolate($message, $context) . PHP_EOL
+            );
+        }
 
 		// if we have a stack context which is the Exception that was thrown,
 		// send that to SS_Log so writers can use that for reporting the error.
