@@ -15,12 +15,19 @@ class SSResqueLogger extends Resque_Log {
 	 * @return null
 	 */
 	public function log($level, $message, array $context = array()) {
-        if ($this->verbose || !($level === Psr\Log\LogLevel::INFO || $level === Psr\Log\LogLevel::DEBUG)) {
-            fwrite(
-                STDOUT,
-                '[' . $level . '] [' . strftime('%T %Y-%m-%d') . '] ' . $this->interpolate($message, $context) . PHP_EOL
-            );
-        }
+		// Filter out any job argument called "password".
+		if (!empty($context['job'])) {
+			if ($context['job'] instanceof Resque_Job) {
+				$payload = $context['job']->payload;
+				// Resque always stores args inside the 0-th element of the 'args' array.
+				if (!empty($payload['args'][0]['password'])) {
+					$payload['args'][0]['password'] = '********';
+				}
+				$context['job'] = new Resque_Job($context['job']->queue, $payload);
+			}
+		}
+
+		parent::log($level, $message, $context);
 
 		// if we have a stack context which is the Exception that was thrown,
 		// send that to SS_Log so writers can use that for reporting the error.

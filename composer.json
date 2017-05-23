@@ -1,18 +1,18 @@
 {
-	"name": "stojg/silverstripe-resque",
-	"type": "silverstripe-module",
-    "description": "Wraps around the resque code for background jobs",
-    "keywords": ["silverstripe","redis"],
-    "homepage": "http://github.com/stojg/silverstripe-resque",
-    "license": "BSD",
-    "authors": [
-        {
-            "name": "Stig Lindqvist",
-            "email": "stojg.lindqvist@gmail.com",
-            "homepage": "https://stojg.se/"
-        }
-    ],
-	"require": {
-		"chrisboulton/php-resque": "dev-master#b0843f4dba7e914728539c4001b8325b68c44354"
-	}
+  "name": "stojg/silverstripe-resque",
+  "type": "silverstripe-module",
+  "description": "Wraps around the resque code for background jobs",
+  "keywords": ["silverstripe","redis"],
+  "homepage": "http://github.com/stojg/silverstripe-resque",
+  "license": "BSD",
+  "authors": [
+    {
+      "name": "Stig Lindqvist",
+      "email": "stojg.lindqvist@gmail.com",
+      "homepage": "https://stojg.se/"
+    }
+  ],
+  "require": {
+    "chrisboulton/php-resque": "dev-master#968b7e6a307a2079051dfc571d2fc2be0546209f"
+  }
 }
