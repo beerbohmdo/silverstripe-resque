@@ -5,4 +5,5 @@ After: '*'
 Director:
   rules:
     'dev/resque/run': 'SSResqueRun'
+    'dev/resque-scheduler/run': 'SSResqueScheduler'
     'dev/resque/ping': 'SSResquePing'
