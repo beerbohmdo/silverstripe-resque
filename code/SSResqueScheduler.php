@@ -82,11 +82,14 @@ class SSResqueScheduler extends Controller {
     protected function startWorker() {
         $worker = new SSResqueScheduler_Worker();
         $worker->setLogger($this->logger);
+
         $PIDFILE = getenv('PIDFILE');
 
         if ($PIDFILE) {
             file_put_contents($PIDFILE, getmypid()) or die('Could not write PID information to ' . $PIDFILE);
         }
+
+        $worker->work();
     }
 }
 
